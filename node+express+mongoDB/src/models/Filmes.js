@@ -7,6 +7,6 @@ const filmeSchema = new mongoose.Schema({
   notaImdb: { type: Number, required: true },
 });
 
-const filme = mongoose.model("filmes-series", filmeSchema);
+const filmeModel = mongoose.model("filmes-series", filmeSchema);
 
-export default filme;
+export default filmeModel;
