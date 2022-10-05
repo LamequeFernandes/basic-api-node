@@ -1,4 +1,5 @@
 import express from "express";
+import routerDiretor from "./diretoresRoutes.js";
 import routerFilme from "./filmesRoutes.js";
 
 const routes = (app) => {
@@ -8,7 +9,8 @@ const routes = (app) => {
 
   app.use(
     express.json(),
-    routerFilme
+    routerFilme,
+    routerDiretor
   );
 } 
 
