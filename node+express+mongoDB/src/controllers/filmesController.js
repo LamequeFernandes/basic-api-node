@@ -26,6 +26,17 @@ class FilmeController {
       });
   }
 
+  static listarFilmePorTitulo = (req, res) => {
+    const titulo = req.query.titulo;
+    filmeModel.find({'titulo': titulo}, {}, (err, filme) => {
+      if (err) {
+        res.status(404).json({ message: err.message });
+      } else {
+        res.status(200).json(filme);
+      }
+    });
+  }
+
   static cadastrarFilme = (req, res) => {
     const filme = new filmeModel(req.body);
     filme.save((err) => {
