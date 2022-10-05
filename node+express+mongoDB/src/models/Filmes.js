@@ -5,6 +5,7 @@ const filmeSchema = new mongoose.Schema({
   titulo: { type: String, required: true },
   producao: { type: String, required: true },
   notaImdb: { type: Number, required: true },
+  diretor: { type: mongoose.Schema.Types.ObjectId, ref: 'diretores', required: true },
 });
 
 const filmeModel = mongoose.model("filmes-series", filmeSchema);

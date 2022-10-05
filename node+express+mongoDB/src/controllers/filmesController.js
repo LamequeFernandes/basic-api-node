@@ -3,23 +3,27 @@ import filmeModel from "./../models/Filmes.js";
 class FilmeController {
 
   static listarFilmes = (req, res) => {
-    filmeModel.find((err, filmes) => {
-      if (err) {
-        res.status(500).send({ message: err.message });
-      } else {
-        res.status(200).json(filmes);
-      }
-    });
+    filmeModel.find()
+      .populate("diretor")
+      .exec((err, filmes) => {
+        if (err) {
+          res.status(500).send({ message: err.message });
+        } else {
+          res.status(200).json(filmes);
+        }
+      });
   }
 
   static listarFilme = (req, res) => {
-    filmeModel.findById(req.params.id, (err, filme) => {
-      if (err) {
-        res.status(404).send({ message: err.message });
-      } else {
-        res.status(200).json(filme);
-      }
-    });
+    filmeModel.findById(req.params.id)
+      .populate("diretor", "nome")
+      .exec((err, filme) => {
+        if (err) {
+          res.status(404).send({ message: err.message });
+        } else {
+          res.status(200).json(filme);
+        }
+      });
   }
 
   static cadastrarFilme = (req, res) => {
